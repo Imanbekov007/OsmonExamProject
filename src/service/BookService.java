@@ -1,5 +1,6 @@
 package service;
 
+import enums.Genre;
 import model.Book;
 
 import java.util.List;
@@ -10,7 +11,7 @@ public interface BookService {
 
     List<Book> getAllBooks();
 
-    List<Book> getBooksByGenre(String genre);
+    List<Book> getBooksByGenre();
 
     Book removeBookById(Long id);
 

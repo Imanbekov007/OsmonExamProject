@@ -3,8 +3,11 @@ package model;
 
 import enums.Genre;
 import enums.Language;
+
 import java.math.BigDecimal;
+import java.time.DateTimeException;
 import java.time.LocalDate;
+
 
 public class Book {
     private Long id;
@@ -13,7 +16,89 @@ public class Book {
     private BigDecimal price;
     private String author;
     private Language language;
+
+    public Book(Long id, String name, Genre genre, BigDecimal price, String author, Language language, LocalDate publishedYear) {
+        this.id = id;
+        this.name = name;
+        this.genre = genre;
+        if(price.intValue()>0) {
+            this.price = price;
+        }else  throw new RuntimeException();
+        this.author = author;
+        this.language = language;
+        if(publishedYear.isBefore(LocalDate.now())) {
+            this.publishedYear = publishedYear;
+        }else throw new RuntimeException();
+    }
+
     private LocalDate publishedYear;
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Genre getGenre() {
+        return genre;
+    }
+
+    public void setGenre(Genre genre) {
+        this.genre = genre;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public void setPrice(BigDecimal price) {
+        this.price = price;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public Language getLanguage() {
+        return language;
+    }
+
+    public void setLanguage(Language language) {
+        this.language = language;
+    }
+
+    public LocalDate getPublishedYear() {
+        return publishedYear;
+    }
+
+    public void setPublishedYear(LocalDate publishedYear) {
+        this.publishedYear = publishedYear;
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", genre=" + genre +
+                ", price=" + price +
+                ", author='" + author + '\'' +
+                ", language=" + language +
+                ", publishedYear=" + publishedYear +
+                '}';
+    }
 }
